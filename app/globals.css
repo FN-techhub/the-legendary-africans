@@ -1,116 +1,389 @@
-/* ================================
-   GLOBAL STYLES
-   ================================ */
+/* =========================================
+   THE LEGENDARY AFRICANS
+   Global Website Styles
+   ========================================= */
 
+/* Reset browser defaults */
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-html {
-  scroll-behavior: smooth;
+html,
+body {
+  width: 100%;
+  min-height: 100%;
 }
 
 body {
-  margin: 0;
-  background: #0a0a0a;
+  background: #050505;
   color: #ffffff;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-
-/* ================================
+/* =========================================
    NAVIGATION
-   ================================ */
+   ========================================= */
 
 .navbar {
   width: 100%;
+  height: 80px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 24px 60px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(10, 10, 10, 0.95);
+
+  padding: 0 50px;
+
+  background: #050505;
+  border-bottom: 1px solid #222;
 }
 
-.logo {
-  font-size: 20px;
+.navbar-brand {
+  font-size: 24px;
   font-weight: 800;
   letter-spacing: 2px;
+  color: #ffffff;
 }
 
-.nav-links {
+.navbar-links {
   display: flex;
   align-items: center;
   gap: 30px;
 }
 
-.nav-links a {
+.navbar-links a {
   color: #ffffff;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
-  letter-spacing: 1px;
   transition: opacity 0.2s ease;
 }
 
-.nav-links a:hover {
+.navbar-links a:hover {
   opacity: 0.6;
 }
 
-
-/* ================================
-   HERO SECTION
-   ================================ */
+/* =========================================
+   HERO
+   ========================================= */
 
 .hero {
-  min-height: calc(100vh - 85px);
+  min-height: calc(100vh - 80px);
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
   text-align: center;
-  padding: 60px 20px;
+
+  padding: 80px 20px;
+
+  background: #050505;
 }
+
+/* Logo image */
+
+.hero-logo {
+  width: 180px;
+  height: auto;
+
+  object-fit: contain;
+
+  display: block;
+
+  margin-bottom: 35px;
+}
+
+/* Main heading */
 
 .hero h1 {
-  margin: 0;
-  font-size: clamp(48px, 8vw, 110px);
-  line-height: 0.95;
+  max-width: 1000px;
+
+  font-size: clamp(50px, 8vw, 120px);
+  line-height: 0.9;
+
   font-weight: 900;
   letter-spacing: -4px;
-  max-width: 1000px;
+
+  color: #ffffff;
+
+  margin-bottom: 30px;
 }
+
+/* Description */
 
 .hero p {
-  margin-top: 30px;
-  margin-bottom: 40px;
   font-size: 18px;
-  color: #b5b5b5;
-  letter-spacing: 2px;
+  letter-spacing: 4px;
+
+  color: #aaaaaa;
+
+  margin-bottom: 40px;
 }
 
-
-/* ================================
+/* =========================================
    HERO BUTTONS
-   ================================ */
+   ========================================= */
 
 .hero-buttons {
   display: flex;
-  gap: 16px;
+  gap: 20px;
 }
 
 .hero-buttons button {
+  padding: 16px 30px;
+
   border: 1px solid #ffffff;
   background: #ffffff;
-  color: #000000;
-  padding: 14px 26px;
-  font-size: 14px;
+  color: #050505;
+
+  font-size: 15px;
   font-weight: 700;
+
   cursor: pointer;
+
   transition: all 0.2s ease;
 }
 
 .hero-buttons button:hover {
   background: transparent;
   color: #ffffff;
+}
+
+/* =========================================
+   FASHION SECTION
+   ========================================= */
+
+.fashion-section {
+  padding: 100px 50px;
+  background: #ffffff;
+  color: #050505;
+  text-align: center;
+}
+
+.fashion-section h2 {
+  font-size: 50px;
+  margin-bottom: 20px;
+}
+
+.fashion-section p {
+  font-size: 18px;
+  color: #555555;
+}
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 700px) {
+  .navbar {
+    padding: 0 20px;
+  }
+
+  .navbar-links {
+    gap: 15px;
+  }
+
+  .navbar-links a {
+    font-size: 12px;
+  }
+
+  .hero {
+    padding: 60px 20px;
+  }
+
+  .hero-logo {
+    width: 130px;
+  }
+
+  .hero h1 {
+    font-size: 55px;
+  }
+
+  .hero p {
+    font-size: 14px;
+    letter-spacing: 2px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+    max-width: 250px;
+  }
+}
+/* =========================================
+   SHOP PAGE
+   ========================================= */
+
+.shop-page {
+  min-height: 100vh;
+  background: #050505;
+  color: #ffffff;
+}
+
+
+/* Shop introduction */
+
+.shop-hero {
+  max-width: 900px;
+
+  margin: 0 auto;
+
+  padding: 120px 30px 80px;
+
+  text-align: center;
+}
+
+.shop-label {
+  font-size: 13px;
+
+  font-weight: 700;
+
+  letter-spacing: 4px;
+
+  color: #888888;
+
+  margin-bottom: 25px;
+}
+
+.shop-hero h1 {
+  font-size: clamp(60px, 10vw, 130px);
+
+  line-height: 0.9;
+
+  font-weight: 900;
+
+  letter-spacing: -4px;
+
+  margin-bottom: 35px;
+}
+
+.shop-intro {
+  max-width: 650px;
+
+  margin: 0 auto;
+
+  font-size: 18px;
+
+  line-height: 1.7;
+
+  color: #aaaaaa;
+}
+
+
+/* =========================================
+   SHOP CATEGORIES
+   ========================================= */
+
+.shop-categories {
+  max-width: 1200px;
+
+  margin: 0 auto;
+
+  padding: 40px 30px 120px;
+
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 20px;
+}
+
+
+/* Individual category */
+
+.shop-card {
+  min-height: 320px;
+
+  padding: 40px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: flex-end;
+
+  background: #111111;
+
+  border: 1px solid #242424;
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.shop-card:hover {
+  transform: translateY(-8px);
+
+  border-color: #ffffff;
+}
+
+.shop-card h2 {
+  font-size: 36px;
+
+  margin-bottom: 15px;
+}
+
+.shop-card p {
+  color: #999999;
+
+  line-height: 1.6;
+
+  margin-bottom: 25px;
+}
+
+
+/* Shop buttons */
+
+.shop-card button {
+  width: fit-content;
+
+  padding: 13px 22px;
+
+  border: 1px solid #ffffff;
+
+  background: #ffffff;
+
+  color: #000000;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.shop-card button:hover {
+  background: transparent;
+
+  color: #ffffff;
+}
+
+
+/* =========================================
+   SHOP MOBILE
+   ========================================= */
+
+@media (max-width: 800px) {
+
+  .shop-hero {
+    padding: 80px 20px 60px;
+  }
+
+  .shop-categories {
+    grid-template-columns: 1fr;
+
+    padding: 20px;
+  }
+
+  .shop-card {
+    min-height: 280px;
+  }
 }

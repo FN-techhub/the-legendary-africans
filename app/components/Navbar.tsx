@@ -1,14 +1,20 @@
 export default function Navbar() {
   return (
-    <nav>
-      <h2>NAVBAR IS WORKING</h2>
+    <nav className="navbar">
 
-      <a href="/">Home</a>
-      <a href="/shop">Shop</a>
-      <a href="/music">Music</a>
-      <a href="/stories">Stories</a>
-      <a href="/culture">Culture</a>
-      <a href="/about">About</a>
+      <div className="navbar-brand">
+        TLA
+      </div>
+
+      <div className="navbar-links">
+        <a href="/">Home</a>
+        <a href="/shop">Shop</a>
+        <a href="/music">Music</a>
+        <a href="/stories">Stories</a>
+        <a href="/culture">Culture</a>
+        <a href="/about">About</a>
+      </div>
+
     </nav>
   );
 }

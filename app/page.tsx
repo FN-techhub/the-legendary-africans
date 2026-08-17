@@ -5,12 +5,18 @@ export default function Home() {
     <>
       <Navbar />
 
-      <h1>TEST TLA</h1>
-
       <main className="hero">
-        <h1>THE LEGENDARY AFRICANS</h1>
+        <h1>
+          THE
+          <br />
+          LEGENDARY
+          <br />
+          AFRICANS
+        </h1>
 
-        <p>Fashion. Music. Culture. Stories.</p>
+        <p>
+          Fashion. Music. Culture. Stories.
+        </p>
 
         <div className="hero-buttons">
           <button>Explore Fashion</button>
