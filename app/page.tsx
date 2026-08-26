@@ -1,28 +1,19 @@
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import Hero from "./components/Hero";
+import FeaturedProducts from "./components/FeaturedProducts";
+import MusicTeaser from "./components/MusicTeaser";
+import StoryTeaser from "./components/StoryTeaser";
 
 export default function Home() {
   return (
     <>
       <Navbar />
-
-      <main className="hero">
-        <h1>
-          THE
-          <br />
-          LEGENDARY
-          <br />
-          AFRICANS
-        </h1>
-
-        <p>
-          Fashion. Music. Culture. Stories.
-        </p>
-
-        <div className="hero-buttons">
-          <button>Explore Fashion</button>
-          <button>Discover Music</button>
-        </div>
-      </main>
+      <Hero />
+      <FeaturedProducts />
+      <MusicTeaser />
+      <StoryTeaser />
+      <Footer />
     </>
   );
 }

@@ -1,10 +1,9 @@
 export default function Navbar() {
   return (
     <nav className="navbar">
-
-      <div className="navbar-brand">
-        TLA
-      </div>
+      <a href="/" className="navbar-brand">
+        <img src="/tla-navbar-logo-v3.png" alt="The Legendary Africans" />
+      </a>
 
       <div className="navbar-links">
         <a href="/">Home</a>
@@ -14,7 +13,6 @@ export default function Navbar() {
         <a href="/culture">Culture</a>
         <a href="/about">About</a>
       </div>
-
     </nav>
   );
 }

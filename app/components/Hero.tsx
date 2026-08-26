@@ -2,7 +2,7 @@ export default function Hero() {
   return (
     <section className="hero">
       <p className="hero-eyebrow">
-        AFRICAN • CREATIVE • CULTURE
+        <span>AFRICAN • CREATIVE • CULTURE</span>
       </p>
 
       <h1>
@@ -16,8 +16,8 @@ export default function Hero() {
       </p>
 
       <div className="hero-buttons">
-        <a href="/shop">Explore Fashion</a>
-        <a href="/music">Discover Music</a>
+        <a href="/shop" className="btn-primary">Explore Fashion</a>
+        <a href="/music" className="btn-secondary">Discover Music</a>
       </div>
     </section>
   );
