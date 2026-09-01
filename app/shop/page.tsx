@@ -1,23 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import ProductCard from "../components/ProductCard";
 import Footer from "../components/Footer";
+import { supabase } from "../lib/supabaseClient";
 
-const products = [
-  { name: "TLA Classic Tee", category: "T-Shirts", price: "KES 2,500", image: "/tla-logo.png" },
-  { name: "TLA Signature Tee", category: "T-Shirts", price: "KES 2,500", image: "/tla-logo.png" },
-  { name: "TLA Heritage Tee", category: "T-Shirts", price: "KES 2,800", image: "/tla-logo.png" },
-  { name: "TLA Hoodie", category: "Hoodies", price: "KES 4,500", image: "/tla-logo.png" },
-  { name: "TLA Pullover Hoodie", category: "Hoodies", price: "KES 4,800", image: "/tla-logo.png" },
-  { name: "TLA Zip Hoodie", category: "Hoodies", price: "KES 5,200", image: "/tla-logo.png" },
-  { name: "TLA Snapback Cap", category: "Caps", price: "KES 1,800", image: "/tla-logo.png" },
-  { name: "TLA Dad Cap", category: "Caps", price: "KES 1,600", image: "/tla-logo.png" },
-  { name: "TLA Bucket Hat", category: "Caps", price: "KES 2,000", image: "/tla-logo.png" },
-  { name: "TLA Tote Bag", category: "Accessories", price: "KES 1,200", image: "/tla-logo.png" },
-  { name: "TLA Enamel Pin", category: "Accessories", price: "KES 600", image: "/tla-logo.png" },
-];
+type Product = {
+  id: number;
+  name: string;
+  category: string;
+  price: string;
+  image: string;
+};
 
 const categories = ["All", "T-Shirts", "Hoodies", "Caps", "Accessories"];
 
@@ -26,8 +21,26 @@ function parsePrice(price: string) {
 }
 
 export default function Shop() {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState("All");
   const [sortBy, setSortBy] = useState("default");
+
+  useEffect(() => {
+    async function fetchProducts() {
+      const { data, error } = await supabase
+        .from("products")
+        .select("*")
+        .order("created_at", { ascending: true });
+
+      if (!error && data) {
+        setProducts(data);
+      }
+      setLoading(false);
+    }
+
+    fetchProducts();
+  }, []);
 
   const filteredProducts =
     activeCategory === "All"
@@ -77,13 +90,15 @@ export default function Shop() {
         </section>
 
         <p className="shop-count">
-          {sortedProducts.length} {sortedProducts.length === 1 ? "item" : "items"}
+          {loading
+            ? "Loading products..."
+            : `${sortedProducts.length} ${sortedProducts.length === 1 ? "item" : "items"}`}
         </p>
 
         <section className="products-grid">
           {sortedProducts.map((product) => (
             <ProductCard
-              key={product.name}
+              key={product.id}
               name={product.name}
               category={product.category}
               price={product.price}

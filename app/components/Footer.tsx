@@ -1,13 +1,32 @@
 "use client";
 
 import { useState } from "react";
+import { supabase } from "../lib/supabaseClient";
 
 export default function Footer() {
-  const [submitted, setSubmitted] = useState(false);
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setSubmitted(true);
+    setStatus("loading");
+    setErrorMessage("");
+
+    const { error } = await supabase
+      .from("newsletter_signups")
+      .insert([{ email }]);
+
+    if (error) {
+      setStatus("error");
+      if (error.code === "23505") {
+        setErrorMessage("That email is already subscribed!");
+      } else {
+        setErrorMessage("Something went wrong. Please try again.");
+      }
+    } else {
+      setStatus("success");
+    }
   }
 
   return (
@@ -16,9 +35,9 @@ export default function Footer() {
         <h2>JOIN THE LEGENDARY AFRICANS</h2>
         <p>Be first to hear new drops, new releases, and new stories.</p>
 
-        {submitted ? (
+        {status === "success" ? (
           <p className="footer-form-success">
-            Thanks for your interest — email signup is launching soon!
+            Thanks for subscribing — welcome to the movement!
           </p>
         ) : (
           <form className="footer-form" onSubmit={handleSubmit}>
@@ -26,12 +45,22 @@ export default function Footer() {
               type="email"
               placeholder="Enter your email"
               className="footer-input"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
-            <button type="submit" className="footer-subscribe">
-              Subscribe
+            <button
+              type="submit"
+              className="footer-subscribe"
+              disabled={status === "loading"}
+            >
+              {status === "loading" ? "Subscribing..." : "Subscribe"}
             </button>
           </form>
+        )}
+
+        {status === "error" && (
+          <p className="footer-form-error">{errorMessage}</p>
         )}
       </div>
 

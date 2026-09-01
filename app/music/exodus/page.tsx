@@ -1,36 +1,40 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import Link from "next/link";
 import { usePlayer, Track } from "../../context/PlayerContext";
-
-const albumTracksRaw = [
-  { title: "Exodus", track: 1, audio: "/audio/exodus.mp3" },
-  { title: "Fallen Soldiers", track: 2, audio: "/audio/fallen-soldiers.mp3" },
-  { title: "Queen Latifah", track: 3, audio: "/audio/queen-latifah.mp3" },
-  { title: "Reggae Don't Stop", track: 4, audio: "/audio/reggae-dont-stop.mp3" },
-  { title: "Only Love", track: 5, audio: "/audio/only-love.mp3" },
-  { title: "Wababa", track: 6, audio: "/audio/wababa.mp3" },
-  { title: "Takeover", track: 7, audio: "/audio/take-over.mp3" },
-  { title: "Wacha Kushout", track: 8, audio: "/audio/wacha-kushout.mp3" },
-  { title: "Roggermilla", track: 9, audio: "/audio/rogger-milla.mp3" },
-  { title: "Mandela", track: 10, audio: "/audio/mandela.mp3" },
-  { title: "Ting Go", track: 11, audio: "/audio/ting-go.mp3" },
-  { title: "Irie Love", track: 12, audio: "/audio/irie-love-ft-mushie.mp3" },
-  { title: "No Man", track: 13, audio: "/audio/no-man.mp3" },
-];
-
-const albumTracks: (Track & { track: number })[] = albumTracksRaw.map((t) => ({
-  title: t.title,
-  audio: t.audio,
-  cover: "/exodus-cover.jpeg",
-  subtitle: `Exodus · Track ${t.track}`,
-  track: t.track,
-}));
+import { supabase } from "../../lib/supabaseClient";
 
 export default function ExodusAlbum() {
+  const [albumTracks, setAlbumTracks] = useState<(Track & { track: number })[]>([]);
+  const [loading, setLoading] = useState(true);
   const { playTrack, togglePlay, currentTrack, isPlaying } = usePlayer();
+
+  useEffect(() => {
+    async function fetchAlbum() {
+      const { data, error } = await supabase
+        .from("tracks")
+        .select("*")
+        .eq("category", "Album")
+        .order("track_number", { ascending: true });
+
+      if (!error && data) {
+        setAlbumTracks(
+          data.map((t) => ({
+            title: t.title,
+            audio: t.audio_path,
+            cover: t.cover_path,
+            subtitle: `Exodus · Track ${t.track_number}`,
+            track: t.track_number,
+          }))
+        );
+      }
+      setLoading(false);
+    }
+    fetchAlbum();
+  }, []);
 
   function isCurrent(track: Track) {
     return currentTrack?.audio === track.audio;
@@ -52,12 +56,14 @@ export default function ExodusAlbum() {
           <div className="featured-release-info">
             <p className="featured-release-label">Album</p>
             <h2>Exodus</h2>
-            <p className="featured-release-meta">13 tracks</p>
+            <p className="featured-release-meta">{albumTracks.length} tracks</p>
             <Link href="/music" className="story-teaser-link">
               ← Back to Music
             </Link>
           </div>
         </section>
+
+        {loading && <p className="shop-count">Loading tracklist...</p>}
 
         <section className="album-tracklist">
           {albumTracks.map((track) => (
