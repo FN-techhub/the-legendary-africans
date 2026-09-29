@@ -52,6 +52,9 @@ export default function AdminDashboard() {
   <Link href="/admin/culture" className="admin-save-btn" style={{ textDecoration: "none", display: "inline-block" }}>
     Manage Culture
   </Link>
+  <Link href="/admin/orders" className="admin-save-btn" style={{ textDecoration: "none", display: "inline-block" }}>
+    Manage Orders
+  </Link>
 </div>
     </main>
   );

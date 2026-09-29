@@ -19,7 +19,7 @@ export default function MusicTeaser() {
       
         <a href={videoUrl}
         target="_blank"
-        rel="noopener noreferrer"
+        rel="noopener noreferrer" 
         className="music-teaser-thumb"
         aria-label="Watch Upper Echelon on YouTube"
       >
