@@ -3140,3 +3140,51 @@ body {
     grid-template-columns: 1fr;
   }
 }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Studio Custom UI Helper Classes */
+.studio-pad-btn {
+  padding: 8px;
+  background-color: #27272a;
+  color: #f4f4f5;
+  border: 1px solid #3f3f46;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.15s ease;
+}
+
+.studio-pad-btn:hover {
+  background-color: #3f3f46;
+}
+
+.studio-select {
+  width: 100%;
+  padding: 10px;
+  background-color: #27272a;
+  color: #fff;
+  border-radius: 6px;
+  border: 1px solid #3f3f46;
+  cursor: pointer;
+}
+
+.studio-primary-btn {
+  padding: 12px;
+  background-color: #d97706;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.studio-primary-btn:hover {
+  background-color: #b45309;
+}
